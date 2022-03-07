@@ -47,7 +47,7 @@ public class CalculatorTest : MonoBehaviour
 
     public void ForData()
     {
-        string temporaryNum = "null";
+        //string temporaryNum = "null";
         for (int i = 0; i < data.Count; i++)
         {
             if (IsOperation("/"))
