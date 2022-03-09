@@ -52,7 +52,7 @@ public class CompleteCalculator : MonoBehaviour
         }
 
         // 计算  
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < oper.Count; i++)
         {
             Calculation();
         }
@@ -72,37 +72,40 @@ public class CompleteCalculator : MonoBehaviour
     {
         for (int i = 0; i < oper.Count; i++)
         {
-            if (IsOperation("/"))
+            if (IsOperation("/","*"))
             {
                 FirstNum(operIndex);
                 LastNum(operIndex);
-                Debug.Log(data[firstnum] + "/" + data[lastnum] + "=========" + firstnum + "===========" + lastnum);
-                float f = Convert.ToSingle(data[firstnum]) / Convert.ToSingle(data[lastnum]);
-                Result(f.ToString());
+                if (oper[operIndex] == "/")
+                {
+                    Debug.Log(data[firstnum] + "/" + data[lastnum] + "=========" + firstnum + "===========" + lastnum);
+                    float f = Convert.ToSingle(data[firstnum]) / Convert.ToSingle(data[lastnum]);
+                    Result(f.ToString());
+                }
+                else
+                {
+                    Debug.Log(data[firstnum] + "*" + data[lastnum] + "=========" + firstnum + "===========" + lastnum);
+                    float f = Convert.ToSingle(data[firstnum]) * Convert.ToSingle(data[lastnum]);
+                    Result(f.ToString());
+                }
             }
-            else if(IsOperation("*"))
+            else if(IsOperation("+","-"))
             {
                 FirstNum(operIndex);
                 LastNum(operIndex);
-                Debug.Log(data[firstnum] + "*" + data[lastnum] + "=========" + firstnum + "===========" + lastnum);
-                float f = Convert.ToSingle(data[firstnum]) * Convert.ToSingle(data[lastnum]);
-                Result(f.ToString());
-            }
-            else if(IsOperation("+"))
-            {
-                FirstNum(operIndex);
-                LastNum(operIndex);
-                Debug.Log(data[firstnum] + "+" + data[lastnum] + "=========" + firstnum + "===========" + lastnum);
-                float f = Convert.ToSingle(data[firstnum]) + Convert.ToSingle(data[lastnum]);
-                Result(f.ToString());
-            }
-            else if(IsOperation("-"))
-            {
-                FirstNum(operIndex);
-                LastNum(operIndex);
-                Debug.Log(data[firstnum] + "-" + data[lastnum] + "=========" + firstnum + "===========" + lastnum);
-                float f = Convert.ToSingle(data[firstnum]) - Convert.ToSingle(data[lastnum]);
-                Result(f.ToString());
+                if (oper[operIndex] == "+")
+                {
+                    Debug.Log(data[firstnum] + "+" + data[lastnum] + "=========" + firstnum + "===========" + lastnum);
+                    float f = Convert.ToSingle(data[firstnum]) + Convert.ToSingle(data[lastnum]);
+                    Result(f.ToString());
+                }
+                else
+                {
+                    Debug.Log(data[firstnum] + "-" + data[lastnum] + "=========" + firstnum + "===========" + lastnum);
+                    float f = Convert.ToSingle(data[firstnum]) - Convert.ToSingle(data[lastnum]);
+                    Result(f.ToString());
+                }
+
             }
         }
     }
@@ -112,11 +115,11 @@ public class CompleteCalculator : MonoBehaviour
     /// </summary>
     /// <param name="s"></param>
     /// <returns></returns>
-    public bool IsOperation(string s)
+    public bool IsOperation(string s1,string s2)
     {
         for (int i = 0; i < oper.Count; i++)
         {
-            if (oper[i] == s)
+            if (oper[i] == s1  || oper[i]==s2)
             {
                 operIndex = i;
                 Debug.Log("operIndex:==="+operIndex);
