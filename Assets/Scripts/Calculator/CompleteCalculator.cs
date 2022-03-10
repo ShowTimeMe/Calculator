@@ -12,7 +12,7 @@ public class CompleteCalculator : MonoBehaviour
     private string formulaStr;
 
     private string selectNum = @"[0-9]+";
-    private string[] operArray = {"/", "*", "-", "+"};
+    private string[] operArray = {"/" , 2, "*", 2, "-", 1, "+",1,"%",34};
 
 
     private int firstnum = 0;// 第一个计算的数字index
@@ -72,7 +72,7 @@ public class CompleteCalculator : MonoBehaviour
     {
         for (int i = 0; i < oper.Count; i++)
         {
-            if (IsOperation("/","*"))
+            if (IsOperation("/","*","%"))
             {
                 FirstNum(operIndex);
                 LastNum(operIndex);
